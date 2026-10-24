@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-package-lock.json
 
 # Environment variables
 .env
@@ -22,6 +21,7 @@ npm-debug.log*
 # Build output
 dist/
 build/
+*.tsbuildinfo
 
 # Deployment
 .vercel/

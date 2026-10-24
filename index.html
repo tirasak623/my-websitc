@@ -1,159 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ShopNest | ร้านค้าออนไลน์ครบวงจร</title>
-  <meta name="description" content="ShopNest ร้านค้าออนไลน์ สินค้าหลากหลาย ราคาคุ้มค่า จัดส่งไว" />
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-
-  <!-- ===== Header ===== -->
-  <header class="header">
-    <div class="container">
-      <a href="index.html" class="logo">Shop<span>Nest</span></a>
-
-      <nav class="nav-menu" data-nav-menu>
-        <a href="index.html" class="active">หน้าแรก</a>
-        <a href="products.html">สินค้าทั้งหมด</a>
-        <a href="products.html?category=electronics">อิเล็กทรอนิกส์</a>
-        <a href="products.html?category=fashion">แฟชั่น</a>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="cart.html" class="icon-btn" aria-label="ตะกร้าสินค้า">
-          🛒
-          <span class="cart-badge" data-cart-badge>0</span>
-        </a>
-        <button class="nav-toggle" data-nav-toggle aria-label="เปิดเมนู">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ===== Hero Banner ===== -->
-  <div class="container">
-    <section class="hero">
-      <img src="assets/images/banner-1.svg" alt="โปรโมชั่น Summer Sale" />
-      <div class="hero-content">
-        <span class="hero-tag">🔥 โปรโมชั่นลดราคา</span>
-        <h1>SUMMER SALE ลดสูงสุด 50%</h1>
-        <p>ช้อปสินค้าคุณภาพดี ราคาคุ้มค่า พร้อมจัดส่งรวดเร็วทั่วประเทศ</p>
-        <div class="hero-actions">
-          <a href="products.html" class="btn btn-primary btn-lg">เลือกซื้อสินค้า</a>
-          <a href="#featured" class="btn btn-outline btn-lg">ดูสินค้าแนะนำ</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Features strip ===== -->
-    <div class="features">
-      <div class="feature-card">
-        <div class="icon">🚚</div>
-        <div>
-          <h4>จัดส่งรวดเร็ว</h4>
-          <p>ส่งทั่วประเทศภายใน 2-3 วัน</p>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="icon">🔒</div>
-        <div>
-          <h4>ชำระเงินปลอดภัย</h4>
-          <p>รองรับหลายช่องทางการจ่าย</p>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="icon">↩️</div>
-        <div>
-          <h4>คืนสินค้าง่าย</h4>
-          <p>เปลี่ยน/คืนได้ภายใน 7 วัน</p>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="icon">💬</div>
-        <div>
-          <h4>บริการ 24 ชม.</h4>
-          <p>ทีมงานพร้อมช่วยเหลือเสมอ</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== Categories ===== -->
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">หมวดหมู่สินค้า</h2>
-          <p class="section-subtitle">เลือกช้อปตามหมวดหมู่ที่คุณสนใจ</p>
-        </div>
-      </div>
-      <div class="categories">
-        <a href="products.html" class="category-chip active">ทั้งหมด</a>
-        <a href="products.html?category=electronics" class="category-chip">อิเล็กทรอนิกส์</a>
-        <a href="products.html?category=fashion" class="category-chip">แฟชั่น</a>
-        <a href="products.html?category=home" class="category-chip">ของใช้ในบ้าน</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Featured Products ===== -->
-  <section class="section" id="featured" style="padding-top: 0;">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">สินค้าแนะนำ</h2>
-          <p class="section-subtitle">สินค้าขายดีที่ลูกค้าเลือกมากที่สุด</p>
-        </div>
-        <a href="products.html" class="btn btn-secondary">ดูสินค้าทั้งหมด →</a>
-      </div>
-      <div class="product-grid" data-featured-products>
-        <!-- JS จะ render การ์ดสินค้าใส่ตรงนี้อัตโนมัติ -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Footer ===== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h4>ShopNest</h4>
-          <p>ร้านค้าออนไลน์ที่รวมสินค้าคุณภาพดี ราคาคุ้มค่า พร้อมบริการที่คุณวางใจได้</p>
-        </div>
-        <div>
-          <h4>ช่วยเหลือ</h4>
-          <ul>
-            <li><a href="#">วิธีการสั่งซื้อ</a></li>
-            <li><a href="#">การจัดส่งสินค้า</a></li>
-            <li><a href="#">การคืนสินค้า</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>บริษัท</h4>
-          <ul>
-            <li><a href="#">เกี่ยวกับเรา</a></li>
-            <li><a href="#">ร่วมงานกับเรา</a></li>
-            <li><a href="#">ติดต่อเรา</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>ติดต่อเรา</h4>
-          <p>📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110</p>
-          <p>📞 02-123-4567</p>
-          <p>✉️ support@shopnest.com</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        &copy; 2026 ShopNest. สงวนลิขสิทธิ์ทุกประการ (เว็บไซต์จำลองเพื่อการเรียนรู้)
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/products.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snack Factory Review | รีวิวขนมจากโรงงาน</title>
+    <meta
+      name="description"
+      content="รวมข้อมูลสินค้า ราคา และวิดีโอรีวิวขนมจากโรงงาน เพื่อช่วยให้คุณเลือกขนมที่เหมาะกับความต้องการ"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

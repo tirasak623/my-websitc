@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faf7f0;
+  --color-charcoal: #24231f;
+  --color-cocoa: #76513b;
+  --color-cocoa-dark: #5a3d2b;
+  --color-orange: #e9a45b;
+  --color-orange-dark: #d6873a;
+
+  --font-sans: "Noto Sans Thai", "Segoe UI", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-charcoal font-sans antialiased;
+  }
+
+  /* ให้เห็น focus ring ชัดเจนเมื่อใช้ keyboard navigation (accessibility) */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-cocoa;
+  }
+}

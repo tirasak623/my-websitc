@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640">
+  <defs>
+    <linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C98B55"/>
+      <stop offset="100%" stop-color="#966031"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="640" fill="url(#g8)"/>
+  <circle cx="320" cy="280" r="130" fill="#FAF7F0" opacity="0.14"/>
+  <text x="320" y="300" font-family="Noto Sans Thai, Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#FAF7F0" text-anchor="middle">SAMPLE IMAGE</text>
+  <text x="320" y="420" font-family="Noto Sans Thai, Segoe UI, sans-serif" font-size="32" fill="#FAF7F0" text-anchor="middle" opacity="0.95">ขนมปังกรอบสมุนไพร</text>
+</svg>
