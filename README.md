@@ -1,6 +1,8 @@
-# Snack Factory Review
+# my-websitc (Snack Factory Review)
 
-เว็บไซต์รีวิวสินค้าโรงงานขนม สร้างด้วย React + Vite + TypeScript + Tailwind CSS
+สินค้าคุณภาพ อยู่ที่คุณเลือก
+
+เว็บไซต์ร้านขนมที่ลูกค้าเลือกชม ใส่ตะกร้า และสั่งซื้อได้ทันที สร้างด้วย React + Vite + TypeScript + Tailwind CSS
 รวมข้อมูลสินค้า ราคา และรีวิวรูปภาพจากลูกค้า เพื่อช่วยให้ลูกค้าเลือกขนมที่เหมาะกับความต้องการ
 
 > ⚠️ **สำคัญ**: ข้อมูลสินค้าและราคาทั้งหมดในโปรเจกต์นี้เป็น **ข้อมูลตัวอย่าง (sample data)**
@@ -121,7 +123,7 @@ npm run preview
 }
 ```
 
-### 4. เปลี่ยน Facebook Page / ช่องทางติดต่อ
+### 5. เปลี่ยน Facebook Page / ช่องทางติดต่อ
 
 แก้ไขไฟล์ `src/config/site.ts`
 
@@ -150,7 +152,7 @@ export const siteConfig = {
 3. Vercel จะตรวจพบ Vite โดยอัตโนมัติ (Build Command: `npm run build`, Output Directory: `dist`)
 4. กด Deploy
 
-ไฟล์ `vercel.json` ในโปรเจกต์นี้ตั้งค่า rewrite ให้ React Router ทำงานถูกต้องเมื่อรีเฟรชหน้าย่อย (เช่น `/products/butter-cookie`) ไว้ให้แล้ว
+ไฟล์ `vercel.json` ในโปรเจกต์นี้ตั้งค่า rewrite ให้ React Router ทำงานถูกต้องเมื่อรีเฟรชหน้าย่อย (เช่น `/products/dice-bean`) ไว้ให้แล้ว
 
 ### Deploy บน Netlify
 
