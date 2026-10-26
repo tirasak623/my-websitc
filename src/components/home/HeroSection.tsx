@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
-import { PlayCircle, ShoppingBag } from "lucide-react";
+import { ShoppingBag, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/common/Button";
+import { productImages } from "@/utils/images";
 
 export function HeroSection() {
   return (
@@ -15,24 +16,24 @@ export function HeroSection() {
             Snack Factory Review
           </p>
           <h1 className="text-3xl md:text-5xl font-bold text-charcoal leading-tight mb-5">
-            ค้นพบขนมคุณภาพจากโรงงาน
+            ขนมอร่อยจากโรงงาน
             <br />
-            พร้อมรีวิวก่อนตัดสินใจ
+            เลือกชม ใส่ตะกร้า สั่งซื้อได้ทันที
           </h1>
           <p className="text-charcoal/70 text-base md:text-lg mb-8 max-w-lg">
-            รวมข้อมูลสินค้า ราคา และวิดีโอรีวิว เพื่อช่วยให้คุณเลือกขนมที่เหมาะกับความต้องการ
+            ขายเป็นชิ้น แบ่งขายห่อเล็กหรือยกกระปุก ราคาต่อชิ้นชัดเจนทุกรายการ พร้อมรีวิวรูปภาพก่อนตัดสินใจ
           </p>
           <div className="flex flex-wrap gap-4">
             <Button to="/products" size="lg" icon={<ShoppingBag size={18} aria-hidden="true" />}>
               เลือกชมสินค้า
             </Button>
             <Button
-              to="/reviews"
+              to="/products"
               variant="outline"
               size="lg"
-              icon={<PlayCircle size={18} aria-hidden="true" />}
+              icon={<ShoppingCart size={18} aria-hidden="true" />}
             >
-              ดูวิดีโอรีวิว
+              เริ่มสั่งซื้อ
             </Button>
           </div>
         </motion.div>
@@ -44,7 +45,7 @@ export function HeroSection() {
           className="relative aspect-square rounded-3xl overflow-hidden shadow-xl"
         >
           <img
-            src="/images/products/snack-1.svg"
+            src={productImages("dice-bean", 1, "jpg")[0]}
             alt="ตัวอย่างสินค้าขนมแนะนำ"
             className="w-full h-full object-cover"
             loading="eager"

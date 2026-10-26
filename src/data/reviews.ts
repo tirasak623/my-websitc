@@ -1,22 +1,18 @@
-import type { ReviewVideo } from "@/types";
+import type { PhotoReview } from "@/types";
 
 /**
- * วิดีโอรีวิวสินค้า — ยังไม่มีวิดีโอจริง จึงเริ่มต้นเป็นลิสต์เปล่า
- * หน้า "วิดีโอรีวิว" จะแสดง Empty State แนะนำให้เพิ่มวิดีโอโดยอัตโนมัติเมื่อลิสต์นี้ว่าง
+ * รีวิวรูปภาพตัวอย่างที่แสดงให้ทุกคนเห็น (SEED DATA) — ยังไม่มีรีวิวจริง จึงเริ่มต้นเป็นลิสต์เปล่า
+ * รีวิวที่ลูกค้ากรอกผ่านหน้าเว็บจะถูกบันทึกแยกไว้ในเบราว์เซอร์ของลูกค้าเอง (ดู src/utils/photoReviews.ts)
+ * ไม่ได้ถูกเพิ่มเข้ามาในไฟล์นี้ — ไฟล์นี้ใช้สำหรับรีวิวที่ทางร้าน "คัดเลือก" ให้แสดงแบบถาวรแก่ทุกคนเท่านั้น
  *
- * วิธีเพิ่มวิดีโอ: เพิ่ม object ใหม่ในอาร์เรย์นี้ เช่น
+ * วิธีเพิ่มรีวิวถาวร: เพิ่ม object ใหม่ในอาร์เรย์นี้ เช่น
  * {
  *   id: "r1",
- *   title: "รีวิวคุกกี้เนยสด",
- *   description: "พาชมความกรอบของคุกกี้เนยสด",
- *   youtubeUrl: "https://www.youtube.com/watch?v=VIDEO_ID",
+ *   customerName: "คุณสมหญิง",
+ *   reviewText: "คุกกี้กรอบมาก อร่อยถูกใจมาก",
+ *   photoUrl: "/images/reviews/your-photo.jpg",
  *   productId: "p1",
- *   publishedAt: "2026-01-15"
+ *   createdAt: "2026-01-15"
  * }
- * ระบบจะตรวจสอบ youtubeUrl อัตโนมัติก่อนฝังวิดีโอ หากไม่ถูกต้องจะไม่แสดงการ์ดวิดีโอนั้น
  */
-export const reviewVideos: ReviewVideo[] = [];
-
-export function getReviewsByProductId(productId: string): ReviewVideo[] {
-  return reviewVideos.filter((v) => v.productId === productId);
-}
+export const photoReviews: PhotoReview[] = [];

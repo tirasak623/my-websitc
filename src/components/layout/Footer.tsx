@@ -18,7 +18,7 @@ export function Footer() {
             Snack Factory Review
           </div>
           <p className="text-sm text-cream/60">
-            รวมข้อมูลสินค้า ราคา และวิดีโอรีวิวขนมจากโรงงาน เพื่อช่วยให้คุณเลือกขนมที่เหมาะกับความต้องการ
+            รวมข้อมูลสินค้า ราคา และรีวิวรูปภาพขนมจากโรงงาน เพื่อช่วยให้คุณเลือกขนมที่เหมาะกับความต้องการ
           </p>
         </div>
 
@@ -67,7 +67,7 @@ export function Footer() {
         <div>
           <h3 className="text-cream font-semibold mb-3 text-sm">{siteConfig.factoryName}</h3>
           <p className="text-sm text-cream/60">
-            เว็บไซต์นี้เป็นเว็บรีวิวสินค้าโรงงานขนม ไม่ใช่หน้าร้านค้าออนไลน์ สั่งซื้อ/สอบถามราคาได้ผ่าน Facebook
+            เลือกชมสินค้า ใส่ตะกร้า และสั่งซื้อได้โดยตรงจากเว็บไซต์ หรือสอบถามเพิ่มเติมได้ผ่าน Facebook
           </p>
         </div>
       </div>

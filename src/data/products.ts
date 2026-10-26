@@ -1,173 +1,155 @@
 import type { Product } from "@/types";
+import { productImages } from "@/utils/images";
 
 /**
- * ข้อมูลสินค้าตัวอย่าง (SAMPLE DATA) สำหรับสาธิตการทำงานของเว็บไซต์เท่านั้น
- * ราคา โภชนาการ และรายละเอียดทั้งหมดในไฟล์นี้เป็นข้อมูลจำลอง ไม่ใช่ข้อมูลจริงจากโรงงาน
- * ก่อนเปิดใช้งานจริง ให้แทนที่ทุกรายการด้วยข้อมูลสินค้าจริง (ดูวิธีแก้ไขใน README.md)
+ * ข้อมูลสินค้าขนม 8 ชนิดที่ร้านขายจริง (ใช้รูปสินค้าจริงที่ร้านถ่ายไว้)
+ * ราคาต่อชิ้นและราคาต่อห่อ/กระปุกในไฟล์นี้เป็น "ราคาตัวอย่าง" เพื่อสาธิตการแสดงผลเท่านั้น
+ * ก่อนเปิดขายจริง ให้แก้ pricePerPiece และ packOptions ของแต่ละรายการให้ตรงกับราคาขายจริงของร้าน
  */
 export const products: Product[] = [
   {
     id: "p1",
-    slug: "butter-cookie",
-    name: "คุกกี้เนยสด",
-    category: "ขนมอบ",
-    description:
-      "คุกกี้เนยสดอบกรอบ ขนาดพอดีคำ เหมาะสำหรับทานเล่นหรือแจกจ่ายในโอกาสต่างๆ",
-    highlights: ["เนื้อกรอบ", "ขนาดพอดีคำ", "แพ็กสะดวกพกพา"],
-    images: ["/images/products/snack-1.svg"],
-    packageSize: "200 กรัม / แพ็ก",
-    price: 89,
-    priceUnit: "บาทต่อแพ็ก",
-    promoPrice: null,
-    wholesalePrice: null,
-    minimumOrder: null,
-    ingredients: ["แป้งสาลี", "เนยสด", "น้ำตาล", "ไข่ไก่", "เกลือ"],
-    nutrition: {
-      servingSize: "30 กรัม",
-      calories: 150,
-      protein: 2,
-      fat: 8,
-      carbohydrate: 18,
-      sugar: 7,
-      sodium: 90
-    },
+    slug: "dice-bean",
+    name: "ลูกเต๋า (ไส้ถั่ว)",
+    category: "ขนมลูกเต๋า",
+    description: "ขนมลูกเต๋าไส้ถั่วเหลืองกวนหอมหวาน เนื้อแป้งนุ่มเหนียวกำลังดี ห่อทีละชิ้นสะอาด ทานง่าย",
+    highlights: ["ไส้ถั่วกวนหอม", "ห่อทีละชิ้น", "ขายดี"],
+    images: productImages("dice-bean", 1, "jpg"),
+    pricePerPiece: 4,
+    packOptions: [
+      { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 32 },
+      { id: "tub", label: "ยกกระปุก (40 ชิ้น)", pieceCount: 40, price: 144 }
+    ],
+    ingredients: ["แป้งสาลี", "ถั่วเหลืองกวน", "น้ำตาล", "น้ำมันพืช"],
     storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
-    expiryInfo: "ควรบริโภคภายใน 6 เดือนจากวันผลิต",
     stockStatus: "in_stock",
-    featured: true,
-    reviewVideoIds: []
+    featured: true
   },
   {
     id: "p2",
-    slug: "crispy-cracker",
-    name: "ขนมปังกรอบ",
-    category: "ขนมอบ",
-    description: "ขนมปังกรอบอบใหม่ เนื้อบางกรอบ รสชาติไม่หวานจัด เหมาะทานคู่เครื่องดื่ม",
-    highlights: ["เนื้อบางกรอบ", "หวานน้อย"],
-    images: ["/images/products/snack-2.svg"],
-    packageSize: "150 กรัม / ถุง",
-    price: 45,
-    priceUnit: "บาทต่อถุง",
-    wholesalePrice: 35,
-    minimumOrder: "สั่งขั้นต่ำ 20 ถุง",
-    ingredients: ["แป้งสาลี", "น้ำมันพืช", "เกลือ", "ยีสต์"],
-    storageInstructions: "เก็บในที่แห้ง ปิดปากถุงให้สนิทหลังเปิดใช้งาน",
+    slug: "vanilla-cookie",
+    name: "คุกกี้วนิลลา",
+    category: "คุกกี้",
+    description: "คุกกี้วนิลลาเนื้อนุ่มหอม สอดไส้ช็อกโกแลตชิพ อบใหม่ทุกรอบ ขนาดพอดีคำ",
+    highlights: ["เนื้อนุ่มหอมวนิลลา", "ช็อกโกแลตชิพ"],
+    images: productImages("vanilla-cookie", 1, "jpg"),
+    pricePerPiece: 5,
+    packOptions: [
+      { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 40 },
+      { id: "tub", label: "ยกกระปุก (40 ชิ้น)", pieceCount: 40, price: 180 }
+    ],
+    ingredients: ["แป้งสาลี", "เนยสด", "น้ำตาล", "ไข่ไก่", "ช็อกโกแลตชิพ", "กลิ่นวนิลลา"],
+    storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
     stockStatus: "in_stock",
-    featured: false,
-    reviewVideoIds: []
+    featured: true
   },
   {
     id: "p3",
-    slug: "choco-wafer",
-    name: "เวเฟอร์ช็อกโกแลต",
-    category: "ช็อกโกแลตและเวเฟอร์",
-    description: "เวเฟอร์กรอบหลายชั้น สอดไส้ครีมช็อกโกแลต เคลือบช็อกโกแลตรอบชิ้น",
-    highlights: ["กรอบหลายชั้น", "ไส้ครีมช็อกโกแลต"],
-    images: ["/images/products/snack-3.svg"],
-    packageSize: "18 กรัม / ชิ้น",
-    price: 65,
-    priceUnit: "บาทต่อแพ็ก",
-    promoPrice: 55,
-    wholesalePrice: 48,
-    minimumOrder: "สั่งขั้นต่ำ 10 แพ็ก",
-    ingredients: ["แป้งสาลี", "น้ำตาล", "โกโก้", "นมผง", "น้ำมันปาล์ม"],
-    nutrition: {
-      servingSize: "18 กรัม",
-      calories: 95,
-      protein: 1,
-      fat: 5,
-      carbohydrate: 12,
-      sugar: 6,
-      sodium: 40
-    },
-    storageInstructions: "เก็บในที่เย็น หลีกเลี่ยงอุณหภูมิสูงเพื่อป้องกันช็อกโกแลตละลาย",
+    slug: "pineapple-pie",
+    name: "พายสับปะรด",
+    category: "พาย",
+    description: "พายเนยกรอบ สอดไส้สับปะรดกวนรสเปรี้ยวหวานกำลังดี หอมเนยแท้ ทานเพลินไม่เลี่ยน",
+    highlights: ["ไส้สับปะรดกวน", "เนื้อพายกรอบ"],
+    images: productImages("pineapple-pie", 1, "jpg"),
+    pricePerPiece: 4,
+    packOptions: [
+      { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 32 },
+      { id: "tub", label: "ยกกระปุก (40 ชิ้น)", pieceCount: 40, price: 144 }
+    ],
+    ingredients: ["แป้งสาลี", "เนย", "สับปะรดกวน", "น้ำตาล"],
+    storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
     stockStatus: "in_stock",
-    featured: true,
-    reviewVideoIds: []
+    featured: true
   },
   {
     id: "p4",
-    slug: "black-sesame-cracker",
-    name: "ข้าวเกรียบงาดำ",
-    category: "ข้าวเกรียบ",
-    description: "ข้าวเกรียบทอดกรอบ โรยงาดำ รสชาติกลมกล่อม",
-    images: ["/images/products/snack-4.svg"],
-    packageSize: "100 กรัม / ถุง",
-    price: 35,
-    priceUnit: "บาทต่อถุง",
-    ingredients: ["แป้งมันสำปะหลัง", "งาดำ", "น้ำมันปาล์ม", "เกลือ"],
-    storageInstructions: "เก็บในที่แห้ง",
+    slug: "pia-winter-melon",
+    name: "ขนมเปี๊ยะไส้ฟัก",
+    category: "ขนมเปี๊ยะ",
+    description: "ขนมเปี๊ยะแป้งเนียนนุ่ม สอดไส้ฟักเชื่อมหอมหวานสไตล์ดั้งเดิม รสชาติกลมกล่อม",
+    highlights: ["ไส้ฟักเชื่อมสูตรดั้งเดิม", "แป้งเนียนนุ่ม"],
+    images: productImages("pia-winter-melon", 1, "jpg"),
+    pricePerPiece: 4,
+    packOptions: [
+      { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 32 },
+      { id: "tub", label: "ยกกระปุก (40 ชิ้น)", pieceCount: 40, price: 144 }
+    ],
+    ingredients: ["แป้งสาลี", "ฟักเชื่อม", "น้ำตาล", "น้ำมันพืช"],
+    storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
     stockStatus: "in_stock",
-    featured: false,
-    reviewVideoIds: []
+    featured: false
   },
   {
     id: "p5",
-    slug: "egg-tart",
-    name: "ทาร์ตไข่",
-    category: "เบเกอรี่",
-    description: "ทาร์ตไข่เนื้อเนียน อบใหม่ทุกวัน แป้งกรอบ ไส้คัสตาร์ดนิ่ม",
-    images: ["/images/products/snack-5.svg"],
-    packageSize: "1 ชิ้น",
-    price: null,
-    priceUnit: undefined,
-    ingredients: ["แป้งสาลี", "ไข่ไก่", "นม", "น้ำตาล", "เนย"],
-    storageInstructions: "แนะนำให้แช่เย็นและบริโภคโดยเร็ว",
-    expiryInfo: "ควรบริโภคภายใน 3 วัน (สินค้าสดใหม่)",
-    stockStatus: "unknown",
-    featured: false,
-    reviewVideoIds: []
+    slug: "cocoon-pineapple",
+    name: "ขนมรังไหมไส้สับปะรด",
+    category: "ขนมรังไหม",
+    description: "ขนมรังไหมแป้งกรอบร่วน สอดไส้สับปะรดกวนหอมหวาน รูปทรงน่ารักเป็นเอกลักษณ์",
+    highlights: ["แป้งกรอบร่วน", "ไส้สับปะรดกวน"],
+    images: productImages("cocoon-pineapple", 1, "svg"),
+    pricePerPiece: 4,
+    packOptions: [
+      { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 32 },
+      { id: "tub", label: "ยกกระปุก (40 ชิ้น)", pieceCount: 40, price: 144 }
+    ],
+    ingredients: ["แป้งสาลี", "สับปะรดกวน", "น้ำตาล", "น้ำมันพืช"],
+    storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
+    stockStatus: "in_stock",
+    featured: false
   },
   {
     id: "p6",
-    slug: "crispy-nuts",
-    name: "ขนมถั่วกรอบ",
-    category: "ถั่วและนัท",
-    description: "ถั่วอบกรอบคลุกเคลือบรสหวานเค็ม ทานง่าย ไม่เลี่ยน",
-    images: ["/images/products/snack-6.svg"],
-    packageSize: "120 กรัม / แพ็ก",
-    price: 59,
-    priceUnit: "บาทต่อแพ็ก",
-    wholesalePrice: 45,
-    minimumOrder: "สั่งขั้นต่ำ 10 แพ็ก",
-    ingredients: ["ถั่วลิสง", "น้ำตาล", "เกลือ", "น้ำมันพืช"],
-    storageInstructions: "เก็บในภาชนะปิดสนิท ป้องกันความชื้น",
+    slug: "pia-bean-egg",
+    name: "ขนมเปี๊ยะไส้ถั่วไข่เค็ม",
+    category: "ขนมเปี๊ยะ",
+    description: "ขนมเปี๊ยะไส้ถั่วเหลืองกวนตัดเค็มด้วยไข่เค็มตรงกลาง รสชาติเข้มข้นหวานมันกลมกล่อม",
+    highlights: ["ไส้ถั่วกวนไข่เค็ม", "รสชาติเข้มข้น"],
+    images: productImages("pia-bean-egg", 1, "jpg"),
+    pricePerPiece: 5,
+    packOptions: [
+      { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 40 },
+      { id: "tub", label: "ยกกระปุก (40 ชิ้น)", pieceCount: 40, price: 180 }
+    ],
+    ingredients: ["แป้งสาลี", "ถั่วเหลืองกวน", "ไข่เค็ม", "น้ำตาล"],
+    storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
     stockStatus: "in_stock",
-    featured: false,
-    reviewVideoIds: []
+    featured: true
   },
   {
     id: "p7",
-    slug: "choco-brownie",
-    name: "บราวนี่ช็อกโกแลต",
-    category: "เบเกอรี่",
-    description: "บราวนี่เนื้อหนึบ รสช็อกโกแลตเข้มข้น โรยหน้าด้วยอัลมอนด์สไลซ์",
-    highlights: ["เนื้อหนึบ", "ช็อกโกแลตเข้มข้น"],
-    images: ["/images/products/snack-7.svg"],
-    packageSize: "250 กรัม / กล่อง",
-    price: 99,
-    priceUnit: "บาทต่อกล่อง",
-    ingredients: ["แป้งสาลี", "ช็อกโกแลต", "เนย", "ไข่ไก่", "น้ำตาล", "อัลมอนด์"],
-    storageInstructions: "เก็บในที่เย็น บริโภคได้ทั้งแบบเย็นและอุณหภูมิห้อง",
-    stockStatus: "out_of_stock",
-    featured: true,
-    reviewVideoIds: []
+    slug: "pia-bean",
+    name: "ขนมเปี๊ยะไส้ถั่ว",
+    category: "ขนมเปี๊ยะ",
+    description: "ขนมเปี๊ยะไส้ถั่วเหลืองกวนสูตรคลาสสิก แป้งนุ่ม ไม่หวานจัด ทานง่ายทุกวัย",
+    highlights: ["สูตรคลาสสิก", "ไม่หวานจัด"],
+    images: productImages("pia-bean", 1, "jpg"),
+    pricePerPiece: 4,
+    packOptions: [
+      { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 32 },
+      { id: "tub", label: "ยกกระปุก (40 ชิ้น)", pieceCount: 40, price: 144 }
+    ],
+    ingredients: ["แป้งสาลี", "ถั่วเหลืองกวน", "น้ำตาล", "น้ำมันพืช"],
+    storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
+    stockStatus: "in_stock",
+    featured: false
   },
   {
     id: "p8",
-    slug: "herb-cracker",
-    name: "ขนมปังกรอบสมุนไพร",
-    category: "ขนมอบ",
-    description: "ขนมปังกรอบปรุงรสด้วยสมุนไพร กลิ่นหอม ทานเพลิน",
-    images: ["/images/products/snack-8.svg"],
-    packageSize: "150 กรัม / ถุง",
-    price: 50,
-    priceUnit: "บาทต่อถุง",
-    ingredients: ["แป้งสาลี", "สมุนไพรผสม", "น้ำมันพืช", "เกลือ"],
-    storageInstructions: "เก็บในที่แห้ง ปิดปากถุงให้สนิทหลังเปิดใช้งาน",
+    slug: "duck-neck",
+    name: "ขนมคอเป็ด",
+    category: "ขนมคอเป็ด",
+    description: "ขนมแป้งทอดกรอบรูปทรงบิดเกลียวเอกลักษณ์ โรยน้ำตาลทรายบางๆ หอมกรอบ ทานเพลิน",
+    highlights: ["แป้งกรอบทอดใหม่", "รูปทรงเอกลักษณ์"],
+    images: productImages("duck-neck", 1, "svg"),
+    pricePerPiece: 3,
+    packOptions: [
+      { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 24 },
+      { id: "tub", label: "ยกกระปุก (40 ชิ้น)", pieceCount: 40, price: 108 }
+    ],
+    ingredients: ["แป้งสาลี", "น้ำตาลทราย", "น้ำมันพืช"],
+    storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
     stockStatus: "in_stock",
-    featured: false,
-    reviewVideoIds: []
+    featured: false
   }
 ];
 

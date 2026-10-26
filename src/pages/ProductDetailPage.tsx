@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { MessageCircleQuestion, PlayCircle } from "lucide-react";
+import { Check, MessageCircleQuestion, Image as ImageIcon, Minus, Plus, ShoppingCart } from "lucide-react";
 import { Seo } from "@/components/common/Seo";
 import { Button } from "@/components/common/Button";
 import { ProductGallery } from "@/components/products/ProductGallery";
 import { ProductCard } from "@/components/products/ProductCard";
-import { VideoCard } from "@/components/reviews/VideoCard";
-import { VideoPlayer } from "@/components/reviews/VideoPlayer";
+import { PhotoReviewCard } from "@/components/reviews/PhotoReviewCard";
+import { PhotoLightbox } from "@/components/reviews/PhotoLightbox";
 import NotFoundPage from "@/pages/NotFoundPage";
 import { getProductBySlug, getRelatedProducts } from "@/data/products";
-import { getReviewsByProductId } from "@/data/reviews";
-import { formatPriceWithUnit } from "@/utils/formatPrice";
-import type { ReviewVideo } from "@/types";
+import { getPhotoReviewsByProductId } from "@/utils/photoReviews";
+import { formatBaht, formatPricePerPiece } from "@/utils/formatPrice";
+import { useCart } from "@/context/CartContext";
+import type { PhotoReview } from "@/types";
 
 const stockLabel: Record<string, string> = {
   in_stock: "มีสินค้า",
@@ -21,20 +22,31 @@ const stockLabel: Record<string, string> = {
 
 export default function ProductDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const [playing, setPlaying] = useState<ReviewVideo | null>(null);
+  const [viewing, setViewing] = useState<PhotoReview | null>(null);
+  const { addItem } = useCart();
   const product = slug ? getProductBySlug(slug) : undefined;
+  const [selectedOptionId, setSelectedOptionId] = useState(product?.packOptions[0]?.id ?? "");
+  const [quantity, setQuantity] = useState(1);
+  const [justAdded, setJustAdded] = useState(false);
 
   if (!product) {
     return <NotFoundPage />;
   }
 
-  const relatedVideos = getReviewsByProductId(product.id);
+  const relatedReviews = getPhotoReviewsByProductId(product.id);
   const relatedProducts = getRelatedProducts(product);
-  const hasPromo =
-    product.promoPrice !== null &&
-    product.promoPrice !== undefined &&
-    product.price !== null &&
-    product.promoPrice < product.price;
+  const isOutOfStock = product.stockStatus === "out_of_stock";
+  const selectedOption =
+    product.packOptions.find((o) => o.id === selectedOptionId) ?? product.packOptions[0];
+
+  const currentProduct = product;
+
+  const handleAddToCart = () => {
+    if (isOutOfStock) return;
+    addItem(currentProduct, selectedOption, quantity);
+    setJustAdded(true);
+    window.setTimeout(() => setJustAdded(false), 1500);
+  };
 
   return (
     <>
@@ -64,36 +76,13 @@ export default function ProductDetailPage() {
               </ul>
             )}
 
-            <div className="flex items-baseline gap-3 mb-2">
-              {hasPromo ? (
-                <>
-                  <span className="text-2xl font-bold text-cocoa">
-                    {formatPriceWithUnit(product.promoPrice, product.priceUnit)}
-                  </span>
-                  <span className="text-base text-charcoal/40 line-through">
-                    {formatPriceWithUnit(product.price, product.priceUnit)}
-                  </span>
-                </>
-              ) : (
-                <span className="text-2xl font-bold text-cocoa">
-                  {formatPriceWithUnit(product.price, product.priceUnit)}
-                </span>
-              )}
+            <div className="flex items-baseline gap-2 mb-4">
+              <span className="text-2xl font-bold text-cocoa">
+                {formatPricePerPiece(product.pricePerPiece)}
+              </span>
             </div>
 
-            {product.packageSize && (
-              <p className="text-sm text-charcoal/60 mb-1">ขนาดบรรจุ: {product.packageSize}</p>
-            )}
-            {product.wholesalePrice && (
-              <p className="text-sm text-charcoal/60 mb-1">
-                ราคาขายส่ง: {formatPriceWithUnit(product.wholesalePrice, product.priceUnit)}
-              </p>
-            )}
-            {product.minimumOrder && (
-              <p className="text-sm text-charcoal/60 mb-1">จำนวนขั้นต่ำในการสั่งซื้อ: {product.minimumOrder}</p>
-            )}
-
-            <p className="text-sm font-medium mt-3 mb-6">
+            <p className="text-sm font-medium mb-5">
               สถานะสินค้า:{" "}
               <span
                 className={
@@ -108,18 +97,76 @@ export default function ProductDetailPage() {
               </span>
             </p>
 
+            <div className="mb-5">
+              <p className="text-sm font-semibold text-charcoal mb-2">เลือกขนาดการซื้อ</p>
+              <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="เลือกขนาดการซื้อ">
+                {product.packOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={option.id === selectedOptionId}
+                    onClick={() => setSelectedOptionId(option.id)}
+                    className={`text-sm font-semibold px-4 py-2 rounded-full border transition-colors ${
+                      option.id === selectedOptionId
+                        ? "bg-cocoa text-cream border-cocoa"
+                        : "bg-white text-charcoal/70 border-cocoa/15 hover:border-cocoa/40"
+                    }`}
+                  >
+                    {option.label} · {formatBaht(option.price)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-6 flex items-center gap-4">
+              <p className="text-sm font-semibold text-charcoal">จำนวน</p>
+              <div className="flex items-center gap-3 border border-cocoa/15 rounded-full px-2 py-1">
+                <button
+                  type="button"
+                  aria-label="ลดจำนวน"
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-cocoa hover:bg-cocoa/10"
+                >
+                  <Minus size={14} aria-hidden="true" />
+                </button>
+                <span className="w-6 text-center font-semibold text-charcoal">{quantity}</span>
+                <button
+                  type="button"
+                  aria-label="เพิ่มจำนวน"
+                  onClick={() => setQuantity((q) => q + 1)}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-cocoa hover:bg-cocoa/10"
+                >
+                  <Plus size={14} aria-hidden="true" />
+                </button>
+              </div>
+              <span className="text-sm text-charcoal/60">
+                รวม {formatBaht(selectedOption.price * quantity)}
+              </span>
+            </div>
+
             <div className="flex flex-wrap gap-3">
-              <Button to="/contact" icon={<MessageCircleQuestion size={18} aria-hidden="true" />}>
-                ติดต่อสอบถามสินค้านี้
+              <Button
+                type="button"
+                onClick={handleAddToCart}
+                disabled={isOutOfStock}
+                icon={
+                  justAdded ? <Check size={18} aria-hidden="true" /> : <ShoppingCart size={18} aria-hidden="true" />
+                }
+              >
+                {isOutOfStock ? "สินค้าหมดชั่วคราว" : justAdded ? "เพิ่มลงตะกร้าแล้ว" : "เพิ่มลงตะกร้า"}
               </Button>
-              {relatedVideos.length > 0 && (
+              <Button to="/contact" variant="outline" icon={<MessageCircleQuestion size={18} aria-hidden="true" />}>
+                สอบถามสินค้านี้
+              </Button>
+              {relatedReviews.length > 0 && (
                 <Button
-                  variant="outline"
-                  icon={<PlayCircle size={18} aria-hidden="true" />}
-                  onClick={() => setPlaying(relatedVideos[0])}
+                  variant="ghost"
+                  icon={<ImageIcon size={18} aria-hidden="true" />}
+                  onClick={() => setViewing(relatedReviews[0])}
                   type="button"
                 >
-                  ดูวิดีโอรีวิว
+                  ดูรีวิวรูปภาพ
                 </Button>
               )}
             </div>
@@ -191,12 +238,12 @@ export default function ProductDetailPage() {
           )}
         </div>
 
-        {relatedVideos.length > 0 && (
+        {relatedReviews.length > 0 && (
           <div className="mb-16">
-            <h2 className="text-xl font-bold text-charcoal mb-6">วิดีโอรีวิวที่เกี่ยวข้อง</h2>
+            <h2 className="text-xl font-bold text-charcoal mb-6">รีวิวรูปภาพที่เกี่ยวข้อง</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedVideos.map((video) => (
-                <VideoCard key={video.id} video={video} onPlay={setPlaying} />
+              {relatedReviews.map((review) => (
+                <PhotoReviewCard key={review.id} review={review} onViewPhoto={setViewing} />
               ))}
             </div>
           </div>
@@ -214,7 +261,7 @@ export default function ProductDetailPage() {
         )}
       </section>
 
-      <VideoPlayer video={playing} onClose={() => setPlaying(null)} />
+      <PhotoLightbox review={viewing} onClose={() => setViewing(null)} />
     </>
   );
 }

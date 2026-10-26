@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="ยังไม่มีรูปสินค้าจริงสำหรับขนมรังไหมไส้สับปะรด">
+  <rect width="400" height="400" fill="#faf7f0"/>
+  <circle cx="200" cy="170" r="70" fill="#e9a45b" opacity="0.25"/>
+  <path d="M140 190c0-40 27-72 60-72s60 32 60 72-27 56-60 56-60-16-60-56z" fill="#d6873a" opacity="0.55"/>
+  <path d="M160 186c0-24 18-44 40-44s40 20 40 44-18 36-40 36-40-12-40-36z" fill="#faf7f0"/>
+  <text x="200" y="290" text-anchor="middle" font-family="'Noto Sans Thai','Segoe UI',sans-serif" font-size="20" font-weight="700" fill="#76513b">ขนมรังไหมไส้สับปะรด</text>
+  <text x="200" y="320" text-anchor="middle" font-family="'Noto Sans Thai','Segoe UI',sans-serif" font-size="14" fill="#24231f" opacity="0.5">รอรูปสินค้าจริงจากร้าน</text>
+</svg>

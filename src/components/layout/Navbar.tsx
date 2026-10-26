@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import { Menu, X, Cookie } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { MobileMenu } from "@/components/layout/MobileMenu";
+import { CartButton } from "@/components/cart/CartButton";
 
 export const NAV_LINKS = [
   { label: "หน้าแรก", to: "/" },
-  { label: "เกี่ยวกับโรงงาน", to: "/factory" },
   { label: "สินค้าทั้งหมด", to: "/products" },
-  { label: "วิดีโอรีวิว", to: "/reviews" },
+  { label: "รีวิวรูปภาพ", to: "/reviews" },
   { label: "ติดต่อเรา", to: "/contact" }
 ];
 
@@ -41,21 +41,24 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <Button to="/contact" size="sm">
-            ติดต่อโรงงาน
-          </Button>
-        </div>
+        <div className="flex items-center gap-2">
+          <CartButton />
+          <div className="hidden md:block">
+            <Button to="/contact" size="sm">
+              ติดต่อโรงงาน
+            </Button>
+          </div>
 
-        <button
-          type="button"
-          className="md:hidden p-2 text-charcoal"
-          aria-label={isMobileOpen ? "ปิดเมนู" : "เปิดเมนู"}
-          aria-expanded={isMobileOpen}
-          onClick={() => setIsMobileOpen((open) => !open)}
-        >
-          {isMobileOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+          <button
+            type="button"
+            className="md:hidden p-2 text-charcoal"
+            aria-label={isMobileOpen ? "ปิดเมนู" : "เปิดเมนู"}
+            aria-expanded={isMobileOpen}
+            onClick={() => setIsMobileOpen((open) => !open)}
+          >
+            {isMobileOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
       </div>
 
       <MobileMenu isOpen={isMobileOpen} onClose={() => setIsMobileOpen(false)} />

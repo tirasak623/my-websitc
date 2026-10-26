@@ -1,3 +1,4 @@
+import { ShoppingBag } from "lucide-react";
 import { FacebookIcon } from "@/components/common/FacebookIcon";
 import { Button } from "@/components/common/Button";
 import { siteConfig } from "@/config/site";
@@ -7,27 +8,28 @@ export function CtaSection() {
     <section className="bg-cocoa">
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-16 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-cream mb-3">
-          สนใจสินค้าหรืออยากทราบราคาล่าสุด?
+          พร้อมสั่งซื้อขนมอร่อยแล้วหรือยัง?
         </h2>
         <p className="text-cream/70 mb-8">
-          ทีมงานพร้อมตอบคำถามและให้ข้อมูลสินค้าผ่านช่องทาง Facebook
+          เลือกชม ใส่ตะกร้า และสั่งซื้อได้ทันทีจากหน้าเว็บไซต์
         </p>
 
-        {siteConfig.facebookUrl ? (
-          <Button
-            href={siteConfig.facebookUrl}
-            variant="secondary"
-            size="lg"
-            icon={<FacebookIcon size={18} />}
-          >
-            ติดต่อผ่าน Facebook
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Button to="/products" variant="secondary" size="lg" icon={<ShoppingBag size={18} aria-hidden="true" />}>
+            เลือกซื้อสินค้า
           </Button>
-        ) : (
-          <p className="text-cream/50 text-sm">
-            ยังไม่ได้ตั้งค่า Facebook Page — โปรดเพิ่มลิงก์ใน{" "}
-            <code className="bg-cream/10 px-1.5 py-0.5 rounded">src/config/site.ts</code>
-          </p>
-        )}
+          {siteConfig.facebookUrl && (
+            <a
+              href={siteConfig.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-200 px-8 py-4 text-lg border-2 border-cream/40 text-cream hover:bg-cream/10"
+            >
+              <FacebookIcon size={18} />
+              ติดต่อผ่าน Facebook
+            </a>
+          )}
+        </div>
       </div>
     </section>
   );

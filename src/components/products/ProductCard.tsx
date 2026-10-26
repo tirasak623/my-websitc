@@ -1,20 +1,29 @@
-import { PlayCircle, MessageCircleQuestion, Star } from "lucide-react";
+import { useState } from "react";
+import { Check, ShoppingCart, Star } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import type { Product } from "@/types";
-import { formatPriceWithUnit } from "@/utils/formatPrice";
-import { getReviewsByProductId } from "@/data/reviews";
+import { useCart } from "@/context/CartContext";
+import { formatBaht, formatPricePerPiece } from "@/utils/formatPrice";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const hasReview = getReviewsByProductId(product.id).length > 0;
-  const hasPromo =
-    product.promoPrice !== null &&
-    product.promoPrice !== undefined &&
-    product.price !== null &&
-    product.promoPrice < product.price;
+  const { addItem } = useCart();
+  const [selectedOptionId, setSelectedOptionId] = useState(product.packOptions[0].id);
+  const [justAdded, setJustAdded] = useState(false);
+
+  const selectedOption =
+    product.packOptions.find((o) => o.id === selectedOptionId) ?? product.packOptions[0];
+  const isOutOfStock = product.stockStatus === "out_of_stock";
+
+  function handleAddToCart() {
+    if (isOutOfStock) return;
+    addItem(product, selectedOption);
+    setJustAdded(true);
+    window.setTimeout(() => setJustAdded(false), 1500);
+  }
 
   return (
     <article className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-cocoa/5 flex flex-col">
@@ -31,11 +40,14 @@ export function ProductCard({ product }: ProductCardProps) {
             แนะนำ
           </span>
         )}
-        {hasPromo && (
-          <span className="absolute top-3 right-3 bg-cocoa text-cream text-xs font-bold px-3 py-1 rounded-full">
-            โปรโมชั่น
+        {isOutOfStock && (
+          <span className="absolute top-3 right-3 bg-charcoal/80 text-cream text-xs font-bold px-3 py-1 rounded-full">
+            สินค้าหมด
           </span>
         )}
+        <span className="absolute bottom-3 right-3 bg-cocoa text-cream text-sm font-extrabold px-3 py-1.5 rounded-full shadow-md">
+          {formatPricePerPiece(product.pricePerPiece)}
+        </span>
       </div>
 
       <div className="p-5 flex flex-col gap-2 flex-1">
@@ -43,53 +55,45 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.category}
         </p>
         <h3 className="font-bold text-charcoal text-lg leading-snug">{product.name}</h3>
-        {product.packageSize && (
-          <p className="text-xs text-charcoal/50">ขนาดบรรจุ: {product.packageSize}</p>
-        )}
 
-        <div className="mt-1 mb-2">
-          {hasPromo ? (
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-cocoa text-lg">
-                {formatPriceWithUnit(product.promoPrice, product.priceUnit)}
-              </span>
-              <span className="text-sm text-charcoal/40 line-through">
-                {formatPriceWithUnit(product.price, product.priceUnit)}
-              </span>
-            </div>
-          ) : (
-            <span className="font-bold text-cocoa text-lg">
-              {formatPriceWithUnit(product.price, product.priceUnit)}
-            </span>
-          )}
+        <div className="mt-1 flex flex-wrap gap-1.5" role="radiogroup" aria-label="เลือกขนาดการซื้อ">
+          {product.packOptions.map((option) => (
+            <button
+              key={option.id}
+              type="button"
+              role="radio"
+              aria-checked={option.id === selectedOptionId}
+              onClick={() => setSelectedOptionId(option.id)}
+              className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${
+                option.id === selectedOptionId
+                  ? "bg-cocoa text-cream border-cocoa"
+                  : "bg-cream text-charcoal/70 border-cocoa/15 hover:border-cocoa/40"
+              }`}
+            >
+              {option.label} · {formatBaht(option.price)}
+            </button>
+          ))}
         </div>
 
-        <div className="mt-auto flex flex-col gap-2">
-          <Button to={`/products/${product.slug}`} size="sm" className="w-full">
+        <div className="mt-auto pt-3 flex flex-col gap-2">
+          <Button
+            type="button"
+            onClick={handleAddToCart}
+            disabled={isOutOfStock}
+            className="w-full"
+            icon={
+              justAdded ? (
+                <Check size={16} aria-hidden="true" />
+              ) : (
+                <ShoppingCart size={16} aria-hidden="true" />
+              )
+            }
+          >
+            {isOutOfStock ? "สินค้าหมดชั่วคราว" : justAdded ? "เพิ่มลงตะกร้าแล้ว" : "เพิ่มลงตะกร้า"}
+          </Button>
+          <Button to={`/products/${product.slug}`} variant="outline" size="sm" className="w-full">
             ดูรายละเอียด
           </Button>
-          <div className="flex gap-2">
-            {hasReview && (
-              <Button
-                to={`/reviews?product=${product.id}`}
-                variant="outline"
-                size="sm"
-                className="flex-1"
-                icon={<PlayCircle size={16} aria-hidden="true" />}
-              >
-                วิดีโอรีวิว
-              </Button>
-            )}
-            <Button
-              to="/contact"
-              variant="ghost"
-              size="sm"
-              className="flex-1"
-              icon={<MessageCircleQuestion size={16} aria-hidden="true" />}
-            >
-              สอบถามสินค้า
-            </Button>
-          </div>
         </div>
       </div>
     </article>

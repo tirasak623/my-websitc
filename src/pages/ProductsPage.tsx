@@ -24,8 +24,8 @@ export default function ProductsPage() {
     });
 
     result = [...result].sort((a, b) => {
-      if (sort === "price-asc") return (a.price ?? Infinity) - (b.price ?? Infinity);
-      if (sort === "price-desc") return (b.price ?? -Infinity) - (a.price ?? -Infinity);
+      if (sort === "price-asc") return a.pricePerPiece - b.pricePerPiece;
+      if (sort === "price-desc") return b.pricePerPiece - a.pricePerPiece;
       return a.name.localeCompare(b.name, "th");
     });
 

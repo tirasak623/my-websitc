@@ -1,4 +1,4 @@
-import { LayoutGrid, SlidersHorizontal, PlayCircle, MessageCircle } from "lucide-react";
+import { LayoutGrid, SlidersHorizontal, Image as ImageIcon, MessageCircle } from "lucide-react";
 import { SectionHeading } from "@/components/common/SectionHeading";
 
 const REASONS = [
@@ -13,14 +13,14 @@ const REASONS = [
     description: "ดูราคาและรายละเอียดสินค้าแต่ละรายการเพื่อเปรียบเทียบก่อนตัดสินใจ"
   },
   {
-    icon: PlayCircle,
-    title: "รับชมวิดีโอรีวิวได้",
-    description: "มีวิดีโอรีวิวประกอบ ช่วยให้เห็นภาพสินค้าจริงก่อนสอบถามหรือสั่งซื้อ"
+    icon: ImageIcon,
+    title: "รับชมรีวิวรูปภาพได้",
+    description: "มีรีวิวรูปภาพจากลูกค้าจริงประกอบ ช่วยให้เห็นภาพสินค้าจริงก่อนสอบถามหรือสั่งซื้อ"
   },
   {
     icon: MessageCircle,
-    title: "ติดต่อสอบถามได้สะดวก",
-    description: "สอบถามราคาและรายละเอียดสินค้าผ่านเพจ Facebook ได้โดยตรง"
+    title: "สั่งซื้อได้ทันทีจากเว็บไซต์",
+    description: "เลือกขนาดการซื้อ ใส่ตะกร้า และสั่งซื้อได้เลย หรือสอบถามเพิ่มเติมผ่านเพจ Facebook"
   }
 ];
 
