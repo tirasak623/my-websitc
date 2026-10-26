@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { ShoppingBag, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/common/Button";
-import { productImages } from "@/utils/images";
 
 export function HeroSection() {
   return (
@@ -45,8 +44,8 @@ export function HeroSection() {
           className="relative aspect-square rounded-3xl overflow-hidden shadow-xl"
         >
           <img
-            src={productImages("dice-bean", 1, "jpg")[0]}
-            alt="ตัวอย่างสินค้าขนมแนะนำ"
+            src="/images/hero/janjamfa-logo.jpg"
+            alt="จันทร์แจ่มฟ้า ขนมทานเล่นโบราณ"
             className="w-full h-full object-cover"
             loading="eager"
           />

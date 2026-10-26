@@ -86,7 +86,7 @@ export const products: Product[] = [
     category: "ขนมรังไหม",
     description: "ขนมรังไหมแป้งกรอบร่วน สอดไส้สับปะรดกวนหอมหวาน รูปทรงน่ารักเป็นเอกลักษณ์",
     highlights: ["แป้งกรอบร่วน", "ไส้สับปะรดกวน"],
-    images: productImages("cocoon-pineapple", 1, "svg"),
+    images: productImages("cocoon-pineapple", 1, "jpg"),
     pricePerPiece: 4,
     packOptions: [
       { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 32 },
@@ -95,7 +95,7 @@ export const products: Product[] = [
     ingredients: ["แป้งสาลี", "สับปะรดกวน", "น้ำตาล", "น้ำมันพืช"],
     storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
     stockStatus: "in_stock",
-    featured: false
+    featured: true
   },
   {
     id: "p6",
@@ -140,7 +140,7 @@ export const products: Product[] = [
     category: "ขนมคอเป็ด",
     description: "ขนมแป้งทอดกรอบรูปทรงบิดเกลียวเอกลักษณ์ โรยน้ำตาลทรายบางๆ หอมกรอบ ทานเพลิน",
     highlights: ["แป้งกรอบทอดใหม่", "รูปทรงเอกลักษณ์"],
-    images: productImages("duck-neck", 1, "svg"),
+    images: productImages("duck-neck", 1, "jpg"),
     pricePerPiece: 3,
     packOptions: [
       { id: "pack", label: "ห่อเล็ก (8 ชิ้น)", pieceCount: 8, price: 24 },
@@ -149,7 +149,7 @@ export const products: Product[] = [
     ingredients: ["แป้งสาลี", "น้ำตาลทราย", "น้ำมันพืช"],
     storageInstructions: "เก็บในที่แห้ง พ้นแสงแดดโดยตรง",
     stockStatus: "in_stock",
-    featured: false
+    featured: true
   }
 ];
 

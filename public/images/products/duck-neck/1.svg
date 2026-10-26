@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="ยังไม่มีรูปสินค้าจริงสำหรับขนมคอเป็ด">
-  <rect width="400" height="400" fill="#faf7f0"/>
-  <circle cx="200" cy="170" r="70" fill="#e9a45b" opacity="0.25"/>
-  <path d="M150 140c20-18 40-18 50 0s10 40-10 54c20 10 24 32 8 48s-44 10-56-10c-16 8-36 0-40-20s8-38 28-42c-10-16-0-30 20-30z" fill="#d6873a" opacity="0.55"/>
-  <text x="200" y="290" text-anchor="middle" font-family="'Noto Sans Thai','Segoe UI',sans-serif" font-size="20" font-weight="700" fill="#76513b">ขนมคอเป็ด</text>
-  <text x="200" y="320" text-anchor="middle" font-family="'Noto Sans Thai','Segoe UI',sans-serif" font-size="14" fill="#24231f" opacity="0.5">รอรูปสินค้าจริงจากร้าน</text>
-</svg>
